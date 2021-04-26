@@ -60,7 +60,7 @@ router.route('/').get((req:Request, res:any) => {
 });
 
 app.use('/api', router);
-app.use(express.static("../Frontend/public"))
+app.use(express.static("./public"))
     .use(cors())
     .use(cookieParser());
 
