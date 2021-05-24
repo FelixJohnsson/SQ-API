@@ -1,0 +1,242 @@
+@font-face {
+  font-family: 'LM-Medium';
+  src: url("LEMONMILK-Medium.otf");
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0f0f13;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1DB954;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e5ede4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+button {
+  height: 20px;
+  width: 50px;
+  border: none;
+  background-color: #1DB954;
+  color: #e5ede4;
+  border-radius: 50px;
+  font-size: 12px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+body, html {
+  background-color: #191414;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 17px;
+  font-family: "LM-Medium";
+  color: #e5ede4;
+  padding: 15px;
+}
+
+h2 {
+  font-size: 14px;
+  font-family: "LM-Medium";
+  color: #e5ede4;
+}
+
+p {
+  font-size: 14px;
+  font-family: 'Poppins';
+  color: #e5ede4;
+}
+
+@-webkit-keyframes example {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+@keyframes example {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#left-nav {
+  height: 100vh;
+  width: 200px;
+  float: left;
+  background-color: black;
+  font-size: 12px;
+  -webkit-animation: example 1s;
+          animation: example 1s;
+}
+
+#left-nav #username-div {
+  color: #e5ede4;
+  font-family: "LM-Medium";
+  height: 50px;
+  width: 100%;
+}
+
+#left-nav #username-div p {
+  padding: 15px;
+}
+
+#left-nav #username-div i {
+  color: #1DB954;
+  font-style: normal;
+}
+
+#left-nav #stats-div {
+  color: #e5ede4;
+  font-family: "LM-Medium";
+  height: 100%;
+  width: 100%;
+}
+
+#left-nav #stats-div div {
+  width: 200px;
+  height: 50px;
+  background-color: #1d1c1c;
+  padding: 15px;
+  margin: 0px;
+  border: solid black 1px;
+}
+
+#left-nav #stats-div #latest-playlist-div {
+  height: 200px;
+}
+
+#middle-wrapper {
+  position: absolute;
+  left: 200px;
+  height: 100%;
+  width: calc(100% - 200px);
+}
+
+#middle-wrapper h1 {
+  color: #1DB954;
+}
+
+#middle-wrapper #inner-div-top {
+  width: 100%;
+  height: 20%;
+  margin: 50px;
+}
+
+#middle-wrapper #inner-div-top #top-section i {
+  color: #1DB954;
+  font-style: normal;
+}
+
+#middle-wrapper #inner-div-top #top-section p {
+  padding: 10px;
+}
+
+#middle-wrapper #inner-div-top #top-section img {
+  height: 40px;
+}
+
+#middle-wrapper #inner-div-top #top-section h2 {
+  padding: 10px;
+}
+
+#middle-wrapper #inner-div-top #top-section #go-to-room-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#middle-wrapper #inner-div-top #top-section #go-to-room-div button {
+  margin: 10px;
+}
+
+#middle-wrapper #inner-div-top #input-wrapper {
+  margin: 60px 0px 10px 10px;
+}
+
+#middle-wrapper #inner-div-top #input-wrapper a {
+  text-decoration: none;
+  color: #1DB954;
+}
+
+#middle-wrapper #inner-div-top input {
+  background-color: #3c3c3c;
+  border: none;
+  border-bottom: solid #e5ede4 1px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#middle-wrapper #inner-div-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow-y: scroll;
+  width: 100%;
+  height: 60%;
+  margin: 50px;
+}
+
+#middle-wrapper #inner-div-bottom .playlist-card {
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+}
+
+#middle-wrapper #inner-div-bottom .playlist-card img {
+  opacity: 0.5;
+  height: 200px;
+  width: 200px;
+}
+
+#middle-wrapper #inner-div-bottom .playlist-card :hover {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 800px) {
+  #left-nav {
+    display: none;
+  }
+  #middle-wrapper {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    width: 90%;
+  }
+}
+/*# sourceMappingURL=logged_in.css.map */

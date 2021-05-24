@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SQ</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='\room/room.css'>
+</head>
+<body>
+    <nav>
+        <button onclick="to_logged_in_page()">Go back</button>
+    </nav>
+    <div id="container">
+        <div id="room-card">
+            <section id="top-section">
+                <div id="preview-image">
+                    <img id="playlist_image" src="#">
+
+                    <div id="play-buttons-div">
+                        <button onclick="request_next()" id="next">Next</button>
+                        <button onclick="request_start()" id="start">Play</button>
+                        <button onclick="request_pause()" id="pause">Pause</button>
+                        <button onclick="show_track()" id="show">Show</button>
+                    </div>
+                </div>
+
+            </section>
+            <section id="bottom-section">
+                <div id="other-info">
+                    <div id="room-events">
+
+                    </div>
+                    <div id="enter-message-div">
+                        <input type='text' id="messages" placeholder="Write message or your guess here">
+                    </div>
+                    <p>Name:<i id="playlist_name"></i> </p>
+                    <p>Description: <i id="description"></i></p>
+                    <p>Owner: <i id="owner"></i></p>
+                    <p>Number of songs: <i id="number_of_songs"></i></p>
+
+                    <a href="" id="link_to_playlist">Link to playlist</a>
+                </div>
+                <div id="players-in-room-div">
+                    <h2>Players in room</h2>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+
+<script src="\room/room.js"></script>
+</html>

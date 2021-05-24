@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SQ</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='\logged_in/logged_in.css'>
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="left-nav">
+            <div id="username-div">
+                <p>Logged in as: <i id="username"></i></p>
+            </div> 
+            <div id="stats-div">
+                <div>
+                    <p id="playlist-played"></p>
+                </div>
+                <div>
+                    <p id="rooms-won"></p>
+                </div>
+                <div>
+                    <p id="rooms-lost"></p>
+                </div>
+                <div>
+                    <p id="number-of-badges"></p>
+                </div>
+
+                <div id="latest-playlist-div">
+                    <p id="latest-playlist"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="middle-wrapper">
+            <h1>Spotify Quiz</h1>
+            <div id="inner-div-top">
+                <div id="top-section">
+                    <div id="go-to-room-div">
+                        <h2><i>Go to room </i><input type="text"></h2><button>Go</button>
+                    </div>
+                    
+                    <h2>or</h2>
+                    <h2><i>Import</i> your own playlist from Spotify, or select a playlist from below.</h2>
+                    <p>The application will create a room for you and then give you the room ID, which you can give to whoever you want to play with or against.</p>
+                </div>
+                <div id="input-wrapper">
+                    <p>Paste your Spotify URI in here to import. <a href="">What is a Spotify URI?</a></p>
+                    <input type="text" placeholder="Paste link here" id="import-playlist"> <button onclick="import_playlist()" > Import </button>
+                </div>
+            </div>
+            <div id="inner-div-bottom">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="\logged_in/logged_in.js"></script>
+</html>

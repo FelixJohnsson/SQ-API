@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "compile": "cd ./support_functions tsc.cmd playlist_functions.ts"
+    
   },
   "author": "",
   "license": "ISC",

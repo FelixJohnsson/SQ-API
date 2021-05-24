@@ -17,84 +17,129 @@ const user_schema = new mongoose.Schema({
 
 const user_model = mongoose.model('user_collection', user_schema);
 
-const init_new_user = (id: String, username:String, oAuth:String) => {
-    const new_user = new user_model({
-        username: username,
-        id: id,
-        socket: 0,
-        latest_connection: Date.now(),
-        first_connection: Date.now(),
-        played_playlists: [],
-        number_of_badges: 0,
-        badges: [],
-        correct_guesses: 0,
-        incorrect_guesses: 0,
-        rooms_won: 0,
-        rooms_lost: 0,
-        oAuth: oAuth
+const init_user = async (id: String, username:String, oAuth:String) => {
+    return new Promise((resolve, reject) => {
+        const new_user = new user_model({
+            username: username,
+            id: id,
+            socket: 0,
+            latest_connection: Date.now(),
+            first_connection: Date.now(),
+            played_playlists: [],
+            number_of_badges: 0,
+            badges: [],
+            correct_guesses: 0,
+            incorrect_guesses: 0,
+            rooms_won: 0,
+            rooms_lost: 0,
+            oAuth: oAuth
+        })
+    
+        new_user.save(function (error:any, success:any) {
+            if(error) reject(error);
+            if(success) resolve(success);
+        });
     })
-    new_user.save(function (err) {
-        if (err) return console.error(err);
-    });
+
 }
 
-const find_user = async (id: String) => {
-    const response = await user_model.find({id:id}, (err, user) => {
-        if (err) return console.error(err);
-        if(user.length > 0){
-            return true;
-        } else {
-            return false;
-        }
+const get_user = async (id: String) => {
+    return new Promise((resolve, reject) => {
+        user_model.find({id:id}, (error:any, success:any) => {
+            if(error) reject(404);
+            if(success) resolve(success);
+        })
     })
-    return response;
 }
 
-const find_update_user = async (id:String, type:String, value?: String | Number) => {
+const update_user = async (id:String, type:String, value?: String | Number) => {
     let filter;
     let update;
     switch(type){
+        case 'delete': 
+            return new Promise((resolve, reject) => {
+                user_model.deleteOne({ id: id }, (error: any, success:any) => {
+                    if(error) reject(error);
+                    if(success) resolve(success);
+                  });
+            })
         case 'login':
-            filter = { id: id };
-            update = { $set:{latest_connection: Date.now(), oAuth: value}};
+            return new Promise((resolve, reject) => {
+                filter = { id: id };
+                update = { $set:{latest_connection: Date.now(), oAuth: value}};
+    
+                user_model.findOneAndUpdate(filter, update, {useFindAndModify: false, returnOriginal:false}, (error:any, success:any) => {
+                    if(error) reject(error);
+                    if(success) resolve(success);
+                }); 
+            })
 
-            let new_data = await user_model.findOneAndUpdate(filter, update, {useFindAndModify: false,returnNewDocument: true}, (error:any, success:any) => {
-                if(success) return success;
-                if(error) return error;
-            }); 
-            return new_data;
         break;
         case 'join_room':
+            return new Promise((resolve, reject) => {
             filter = { id: id };
             update = { $push: {played_playlists: value}, $set:{latest_connection: Date.now()}};
     
-            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false}, (error:any, success:any) => {
-                if(error) console.log(error);
+            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false, returnOriginal:false}, (error:any, success:any) => {
+                if(error) reject(error);
+                if(success) resolve(success);
             }); 
+        })
         break;
         case 'correct_guess':
+            return new Promise((resolve, reject) => {
             filter = { id: id };
             update = { $inc: {correct_guesses: value}};
             
-            const response = await user_model.findOneAndUpdate(filter, update, {useFindAndModify: false}, (error:any, success:any) => {
-                if(error) console.log('ERROR: ' + error);
+            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false, returnOriginal:false}, (error:any, success:any) => {
+                if(error) reject(error);
+                if(success) resolve(success);
             }); 
-            return response;
+        })
         case 'incorrect_guess':
+            return new Promise((resolve, reject) => {
             filter = { id: id };
             update = { $inc: {incorrect_guesses: value}};
     
-            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false}, (error:any, success:any) => {
-                if(error) console.log(error);
+            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false, returnOriginal:false}, (error:any, success:any) => {
+                if(error) reject(error);
+                if(success) resolve(success);
             }); 
+        })
+        break;
+        case 'rooms_won':
+            return new Promise((resolve, reject) => {
+            filter = { id: id };
+            update = { $inc: {rooms_won: 1}};
+    
+            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false, returnOriginal:false}, (error:any, success:any) => {
+                if(error) reject(error);
+                if(success) resolve(success);
+            }); 
+        })
+        break;
+        case 'rooms_lost':
+            return new Promise((resolve, reject) => {
+            filter = { id: id };
+            update = { $inc: {rooms_lost: 1}};
+    
+            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false, returnOriginal:false}, (error:any, success:any) => {
+                if(error) reject(error);
+                if(success) resolve(success);
+            }); 
+        })
         break;
         case 'new_badge':
+            return new Promise((resolve, reject) => {
+                console.log('New badge')
             filter = { id: id };
             update = { $inc: {number_of_badges: 1}, $push: {badges: value}};
     
-            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false}, (error:any, success:any) => {
-                if(error) console.log(error);
+            user_model.findOneAndUpdate(filter, update, {useFindAndModify: false, returnOriginal:false}, (error:any, success:any) => {
+                if(error) reject(error);
+                if(success) resolve(success);
             }); 
+        })
         break;
     }
 }
@@ -102,7 +147,7 @@ const find_update_user = async (id:String, type:String, value?: String | Number)
 
 
 module.exports = {
-    init_new_user,
-    find_user,
-    find_update_user,
+    init_user,
+    get_user,
+    update_user,
 }

@@ -1,0 +1,97 @@
+@font-face {
+  font-family: 'LM-Medium';
+  src: url("LEMONMILK-Medium.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+nav {
+  background-color: #191414;
+  height: 50px;
+  color: white;
+  font-family: "Poppins";
+  font-size: 20px;
+}
+
+nav p {
+  padding: 10px;
+}
+
+body {
+  background-color: #191414;
+}
+
+.login-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 445px;
+  width: 400px;
+  background: #292a2b;
+  color: #e5ede4;
+  border-radius: 15px;
+}
+
+.login-card h1 {
+  font-family: 'LM-Medium';
+  font-size: 25px;
+}
+
+.login-card p {
+  font-family: "Poppins";
+  font-size: 16px;
+}
+
+#welcome-text-wrapper {
+  height: 50px;
+  width: 300px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+#login-details {
+  height: 200px;
+  width: 300px;
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
+#login-details a {
+  text-decoration: none;
+  color: #1DB954;
+}
+
+#login-details p {
+  padding: 8px;
+}
+
+#button-wrapper {
+  height: 70px;
+  width: 300px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+#button-wrapper button {
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: #1DB954;
+  color: #e5ede4;
+  border-radius: 50px;
+  font-size: 20px;
+}
+
+#button-wrapper button:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=landingpage.css.map */

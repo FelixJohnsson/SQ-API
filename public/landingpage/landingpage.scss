@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'LM-Medium';
+    src: url('LEMONMILK-Medium.otf')
+}
+
+
+//COLORS
+$spotifyGreen: #1DB954;
+$spotifyBlack: #191414;
+$grey: #3c3c3c;
+
+$primaryDarkBackground:  rgb(15, 15, 19);
+$primaryLighterBackground:  rgb(36, 36, 39);
+
+$primaryWhite: rgb(229, 237, 228);
+//FONTS
+$primaryFont: 'Poppins';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow:hidden;
+}
+
+nav{
+    background-color:$spotifyBlack;
+    height: 50px;
+
+    color: white;
+
+    p{
+        padding: 10px;
+    }
+    font-family: $primaryFont;
+    font-size: 20px;
+}
+body{
+    background-color: $spotifyBlack;;
+}
+div{
+    //border: solid white 1px;
+}
+.login-card {
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    top: 30%;
+    margin-left: auto; 
+    margin-right: auto; 
+    height: 445px;
+    width:400px;
+    background: #292a2b;
+    color: $primaryWhite;
+    border-radius: 15px;
+    h1{
+        font-family: 'LM-Medium';
+        font-size: 25px;
+    }
+    p{
+        font-family: $primaryFont;
+        font-size: 16px;
+    }
+}
+
+#welcome-text-wrapper{
+    height: 50px;
+    width: 300px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+#login-details{
+    height: 200px;
+    width: 300px;
+    margin-left: 50px;
+    margin-top: 10px;
+    a{
+        text-decoration: none;
+        color: $spotifyGreen;
+    }
+    p{
+        padding: 8px;
+    }
+}
+#button-wrapper{
+    height: 70px;
+    width: 300px;
+    margin-left: 50px;
+    margin-top: 30px;
+
+    button{
+        height: 100%;
+        width: 100%;
+        border: none;
+        background-color: $spotifyGreen;
+        color: $primaryWhite;
+        border-radius: 50px;
+        font-size: 20px;
+        &:hover { cursor: pointer; }
+    }
+}

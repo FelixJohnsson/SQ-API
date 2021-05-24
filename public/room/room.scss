@@ -1,0 +1,208 @@
+@font-face {
+    font-family: 'LM-Medium';
+    src: url('LEMONMILK-Medium.otf')
+}
+
+
+//COLORS
+$spotifyGreen: #1DB954;
+$spotifyBlack: #191414;
+$grey: #3c3c3c;
+
+$primaryDarkBackground:  rgb(15, 15, 19);
+$primaryLighterBackground:  rgb(36, 36, 39);
+
+$primaryWhite: rgb(229, 237, 228);
+//FONTS
+$primaryFont: 'Poppins';
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $primaryDarkBackground;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $spotifyGreen;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primaryWhite
+  }
+* {
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    color: $primaryWhite;
+    font-family: 'LM-Medium';
+    padding: 20px;
+}
+
+body{
+    background-color: $spotifyBlack;
+}
+
+h2{
+    color: $primaryWhite;
+    font-size: 15px;
+    padding: 10px;
+    font-family: 'LM-Medium';
+}
+div{
+}
+
+#container{
+    display:flex;
+    justify-content: center;
+}
+#room-card{
+    width: 70vw;
+    height: 82vh;
+}
+#top-section{
+    display:flex;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    #preview-image{
+        max-height: 300px;
+        max-width: 300px;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    #guess-div{
+        width: 100%;  
+        input{
+            height: 100%;
+            width: 100%;
+            padding:0;
+            margin:0;
+            background-color:#3c3c3c;
+            color: $primaryWhite;
+            font-family: 'LM-Medium';
+            font-size: 15px;
+        } 
+    }
+    }
+}
+#bottom-section{
+    display: flex;
+    height: 50%;
+    width: 100%;
+    #other-info{
+        font-family: 'LM-Medium';
+        width: 100%;    
+        height: 100%;
+        border: solid white 1px;
+        p{
+            color: $primaryWhite;
+            font-size: 15px;
+            padding: 10px;
+        }
+        i{
+            font-style: normal;
+            color: $spotifyGreen;
+            font-size: 13px;
+            padding-left: 10px;
+        }
+        a{
+            color: $grey;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 10px;
+        }
+    }
+    #enter-message-div{
+        height: 30px;
+        width: 100%;
+        input{
+            height: 100%;
+            width: 100%;
+            padding:0;
+            margin:0;
+            background-color:#3c3c3c;
+            color: $primaryWhite;
+            font-family: 'LM-Medium';
+            font-size: 15px;
+        }
+    }
+    #room-events{
+        border:solid white 1px;
+        height: 40%;
+        width: 100%;
+        overflow-y: scroll;
+        #joined{
+            
+        }
+        #left{
+
+        }
+        #message{
+
+        }
+        #correct-guess{
+
+        }
+        #incorrect-guess{
+
+        }
+        #default{
+            color: $primaryWhite;
+            font-size: 13px;
+            padding: 10px;
+            font-family: 'LM-Medium';
+        }
+    }
+    #players-in-room-div{
+        border:solid white 1px;
+        width: 200px;
+        height: 100%;
+    }
+    input{
+        margin: 50px;
+    }
+}
+#play-buttons-div{
+    display:flex;
+    height: 50px;
+    width: 100%;
+    button{
+        width: 100%;
+        height:100%;
+        border-radius: 25px;
+        background-color: $spotifyGreen;
+        font-size: 14px;
+        border:none;
+        font-family: 'LM-Medium';
+        color: $primaryWhite;
+        margin: 10px;
+        cursor: pointer;
+    }
+    #next{
+        display:none;
+    }
+    #start{
+
+    }
+    #pause{
+        display:none;
+    }
+    #show{
+        display:none;
+    }
+}
+.players{
+    font-size: 14px;
+    color: $spotifyGreen;
+    padding: 10px;
+    font-family: 'LM-Medium';
+}

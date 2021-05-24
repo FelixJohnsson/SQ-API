@@ -51,113 +51,148 @@ var user_schema = new mongoose.Schema({
     oAuth: String
 });
 var user_model = mongoose.model('user_collection', user_schema);
-var init_new_user = function (id, username, oAuth) {
-    var new_user = new user_model({
-        username: username,
-        id: id,
-        socket: 0,
-        latest_connection: Date.now(),
-        first_connection: Date.now(),
-        played_playlists: [],
-        number_of_badges: 0,
-        badges: [],
-        correct_guesses: 0,
-        incorrect_guesses: 0,
-        rooms_won: 0,
-        rooms_lost: 0,
-        oAuth: oAuth
-    });
-    new_user.save(function (err) {
-        if (err)
-            return console.error(err);
-    });
-};
-var find_user = function (id) { return __awaiter(_this, void 0, void 0, function () {
-    var response;
+var init_user = function (id, username, oAuth) { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, user_model.find({ id: id }, function (err, user) {
-                    if (err)
-                        return console.error(err);
-                    if (user.length > 0) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
-                })];
-            case 1:
-                response = _a.sent();
-                return [2 /*return*/, response];
-        }
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                var new_user = new user_model({
+                    username: username,
+                    id: id,
+                    socket: 0,
+                    latest_connection: Date.now(),
+                    first_connection: Date.now(),
+                    played_playlists: [],
+                    number_of_badges: 0,
+                    badges: [],
+                    correct_guesses: 0,
+                    incorrect_guesses: 0,
+                    rooms_won: 0,
+                    rooms_lost: 0,
+                    oAuth: oAuth
+                });
+                new_user.save(function (error, success) {
+                    if (error)
+                        reject(error);
+                    if (success)
+                        resolve(success);
+                });
+            })];
     });
 }); };
-var find_update_user = function (id, type, value) { return __awaiter(_this, void 0, void 0, function () {
-    var filter, update, _a, new_data, response;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = type;
-                switch (_a) {
-                    case 'login': return [3 /*break*/, 1];
-                    case 'join_room': return [3 /*break*/, 3];
-                    case 'correct_guess': return [3 /*break*/, 4];
-                    case 'incorrect_guess': return [3 /*break*/, 6];
-                    case 'new_badge': return [3 /*break*/, 7];
-                }
-                return [3 /*break*/, 8];
-            case 1:
-                filter = { id: id };
-                update = { $set: { latest_connection: Date.now(), oAuth: value } };
-                return [4 /*yield*/, user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnNewDocument: true }, function (error, success) {
-                        if (success)
-                            return success;
-                        if (error)
-                            return error;
+var get_user = function (id) { return __awaiter(_this, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, new Promise(function (resolve, reject) {
+                user_model.find({ id: id }, function (error, success) {
+                    if (error)
+                        reject(404);
+                    if (success)
+                        resolve(success);
+                });
+            })];
+    });
+}); };
+var update_user = function (id, type, value) { return __awaiter(_this, void 0, void 0, function () {
+    var filter, update;
+    return __generator(this, function (_a) {
+        switch (type) {
+            case 'delete':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        user_model.deleteOne({ id: id }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
                     })];
-            case 2:
-                new_data = _b.sent();
-                return [2 /*return*/, new_data];
-            case 3:
-                filter = { id: id };
-                update = { $push: { played_playlists: value }, $set: { latest_connection: Date.now() } };
-                user_model.findOneAndUpdate(filter, update, { useFindAndModify: false }, function (error, success) {
-                    if (error)
-                        console.log(error);
-                });
-                return [3 /*break*/, 8];
-            case 4:
-                filter = { id: id };
-                update = { $inc: { correct_guesses: value } };
-                return [4 /*yield*/, user_model.findOneAndUpdate(filter, update, { useFindAndModify: false }, function (error, success) {
-                        if (error)
-                            console.log('ERROR: ' + error);
+            case 'login':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        filter = { id: id };
+                        update = { $set: { latest_connection: Date.now(), oAuth: value } };
+                        user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnOriginal: false }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
                     })];
-            case 5:
-                response = _b.sent();
-                return [2 /*return*/, response];
-            case 6:
-                filter = { id: id };
-                update = { $inc: { incorrect_guesses: value } };
-                user_model.findOneAndUpdate(filter, update, { useFindAndModify: false }, function (error, success) {
-                    if (error)
-                        console.log(error);
-                });
-                return [3 /*break*/, 8];
-            case 7:
-                filter = { id: id };
-                update = { $inc: { number_of_badges: 1 }, $push: { badges: value } };
-                user_model.findOneAndUpdate(filter, update, { useFindAndModify: false }, function (error, success) {
-                    if (error)
-                        console.log(error);
-                });
-                return [3 /*break*/, 8];
-            case 8: return [2 /*return*/];
+                break;
+            case 'join_room':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        filter = { id: id };
+                        update = { $push: { played_playlists: value }, $set: { latest_connection: Date.now() } };
+                        user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnOriginal: false }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
+                    })];
+                break;
+            case 'correct_guess':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        filter = { id: id };
+                        update = { $inc: { correct_guesses: value } };
+                        user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnOriginal: false }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
+                    })];
+            case 'incorrect_guess':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        filter = { id: id };
+                        update = { $inc: { incorrect_guesses: value } };
+                        user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnOriginal: false }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
+                    })];
+                break;
+            case 'rooms_won':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        filter = { id: id };
+                        update = { $inc: { rooms_won: 1 } };
+                        user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnOriginal: false }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
+                    })];
+                break;
+            case 'rooms_lost':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        filter = { id: id };
+                        update = { $inc: { rooms_lost: 1 } };
+                        user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnOriginal: false }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
+                    })];
+                break;
+            case 'new_badge':
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        console.log('New badge');
+                        filter = { id: id };
+                        update = { $inc: { number_of_badges: 1 }, $push: { badges: value } };
+                        user_model.findOneAndUpdate(filter, update, { useFindAndModify: false, returnOriginal: false }, function (error, success) {
+                            if (error)
+                                reject(error);
+                            if (success)
+                                resolve(success);
+                        });
+                    })];
+                break;
         }
+        return [2 /*return*/];
     });
 }); };
 module.exports = {
-    init_new_user: init_new_user,
-    find_user: find_user,
-    find_update_user: find_update_user
+    init_user: init_user,
+    get_user: get_user,
+    update_user: update_user
 };

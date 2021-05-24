@@ -1,0 +1,212 @@
+@font-face {
+    font-family: 'LM-Medium';
+    src: url('LEMONMILK-Medium.otf')
+}
+
+
+//COLORS
+$spotifyGreen: #1DB954;
+$spotifyBlack: #191414;
+$navBackground: #1d1c1c;
+$grey: #3c3c3c;
+
+$primaryDarkBackground:  rgb(15, 15, 19);
+$primaryLighterBackground:  rgb(36, 36, 39);
+
+$primaryWhite: rgb(229, 237, 228);
+//FONTS
+$primaryFont: 'LM-Medium';
+
+//SCROLLBAR(s)
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $primaryDarkBackground;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $spotifyGreen;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primaryWhite
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+button{
+    height: 20px;
+    width: 50px;
+    border: none;
+    background-color: $spotifyGreen;
+    color: $primaryWhite;
+    border-radius: 50px;
+    font-size: 12px;
+    &:hover { cursor: pointer; }
+}
+body, html{
+    background-color: $spotifyBlack;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+div{
+    //border: solid white 1px;
+}
+h1{
+    font-size: 17px;
+    font-family: $primaryFont;
+    color: $primaryWhite;
+    padding: 15px;
+}
+h2{
+    font-size: 14px;
+    font-family: $primaryFont;
+    color: $primaryWhite;
+}
+p{
+    font-size: 14px;
+    font-family: 'Poppins';
+    color: $primaryWhite;
+}
+@keyframes example {
+    from {left: -100px;}
+    to {left: 0px}
+  }
+#container{
+    width: 100vw;
+    height: 100vh;
+}
+
+#left-nav{
+    height: 100vh;
+    width: 200px;
+    float:left;
+    background-color: black;
+    font-size: 12px;
+    animation: example 1s;
+
+    #username-div{
+        color: $primaryWhite;
+        font-family: $primaryFont;
+        height: 50px;
+        width: 100%;
+        p{
+            padding: 15px;
+        }
+        i{
+            color: $spotifyGreen;
+            font-style: normal;
+        }
+    }
+    #stats-div{
+        color: $primaryWhite;
+        font-family: $primaryFont;
+        height: 100%;
+        width: 100%;
+        div{
+            width: 200px;
+            height: 50px;
+            background-color: $navBackground;
+            padding: 15px;
+            margin: 0px;
+            border: solid black 1px;
+        }
+        #latest-playlist-div{
+            height: 200px;
+        }
+    }
+}
+#middle-wrapper{
+    position: absolute;
+    left: 200px;
+    height: 100%;
+    width: -webkit-calc(100% - 200px);
+    width:    -moz-calc(100% - 200px);
+    width:         calc(100% - 200px);
+    h1{
+        color: $spotifyGreen;
+    }
+    #inner-div-top{
+        width: 100%;
+        height: 20%;
+        margin: 50px;
+        #top-section{
+            i{
+                color: $spotifyGreen;
+                font-style: normal;
+            }
+            p{
+                padding: 10px;
+            }
+            img{
+                height:40px;
+            }
+            h2{
+                padding: 10px;
+            }
+            #go-to-room-div{
+                display:flex;
+                button{
+                    margin:10px;
+                }
+            }
+        }
+        #input-wrapper{
+            margin: 60px 0px 10px 10px;
+            a{
+                text-decoration: none;
+                color: $spotifyGreen;
+            }
+        }
+        input{
+            background-color: $grey;
+            border:none;
+            border-bottom: solid $primaryWhite 1px;
+            box-shadow: none;
+        }
+    }
+    #inner-div-bottom{
+        display: flex;
+        flex-wrap: wrap;
+        overflow-y: scroll;
+        width: 100%;
+        height: 60%;
+        margin: 50px;
+        .playlist-card{
+            height: 200px;
+            width: 200px;
+            margin: 10px;
+                img{
+                    opacity: 0.5;
+                    height: 200px;
+                    width: 200px;
+                }:hover{
+                    opacity: 1;
+            }
+        }
+    }
+
+}
+
+
+@media only screen and (max-width: 800px) {
+    #left-nav{
+        display:none;
+    }
+    #middle-wrapper{
+        position: absolute;
+        left: 0px;
+        height: 100%;
+        width: 90%;
+    }
+}
